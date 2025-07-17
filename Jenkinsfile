@@ -18,11 +18,14 @@ pipeline {
             }
         }
 
-        stage('Run DVC Pipeline') {
+        stage('Install Dependencies') {
             steps {
                 script {
-                    echo 'Running DVC pipeline......'
-                    sh 'dvc repro'
+                    echo 'Installing dependencies...'
+                    sh '''
+                        pip install --upgrade pip
+                        pip install -r requirements.txt
+                    '''
                 }
             }
         }
