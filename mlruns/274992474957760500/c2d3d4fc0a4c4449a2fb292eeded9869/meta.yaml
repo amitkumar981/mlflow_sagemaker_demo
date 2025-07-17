@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/redhu/OneDrive/Desktop/mlflow_sagemaker_demo_project/mlruns/274992474957760500/c2d3d4fc0a4c4449a2fb292eeded9869/artifacts
+end_time: 1751529206606
+entry_point_name: ''
+experiment_id: '274992474957760500'
+lifecycle_stage: active
+run_id: c2d3d4fc0a4c4449a2fb292eeded9869
+run_name: unruly-lynx-257
+run_uuid: c2d3d4fc0a4c4449a2fb292eeded9869
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751529143708
+status: 4
+tags: []
+user_id: redhu

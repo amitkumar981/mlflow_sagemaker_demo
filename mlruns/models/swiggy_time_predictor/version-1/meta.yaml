@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1751527902148
+current_stage: None
+description: null
+last_updated_timestamp: 1751527902148
+name: swiggy_time_predictor
+run_id: 976dd764124242f586604e3b18ab04f7
+run_link: null
+source: file:///C:/Users/redhu/OneDrive/Desktop/mlflow_sagemaker_demo_project/mlruns/208083005309287557/976dd764124242f586604e3b18ab04f7/artifacts/swiggy_time_predictor
+status: READY
+status_message: null
+storage_location: file:///C:/Users/redhu/OneDrive/Desktop/mlflow_sagemaker_demo_project/mlruns/208083005309287557/976dd764124242f586604e3b18ab04f7/artifacts/swiggy_time_predictor
+user_id: null
+version: 1

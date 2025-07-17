@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/redhu/OneDrive/Desktop/mlflow_sagemaker_demo_project/mlruns/208083005309287557/7b66be477aa44abe9169eb45238494db/artifacts
+end_time: 1751524471561
+entry_point_name: ''
+experiment_id: '208083005309287557'
+lifecycle_stage: active
+run_id: 7b66be477aa44abe9169eb45238494db
+run_name: whimsical-frog-313
+run_uuid: 7b66be477aa44abe9169eb45238494db
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751523745675
+status: 4
+tags: []
+user_id: redhu

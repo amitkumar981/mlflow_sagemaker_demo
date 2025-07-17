@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/187755120132885830/e7bbd054dd6f45b59554d2a67de9e1e2/artifacts
+end_time: 1751555952283
+entry_point_name: ''
+experiment_id: '187755120132885830'
+lifecycle_stage: active
+run_id: e7bbd054dd6f45b59554d2a67de9e1e2
+run_name: enchanting-eel-816
+run_uuid: e7bbd054dd6f45b59554d2a67de9e1e2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751555915877
+status: 3
+tags: []
+user_id: redhu

@@ -1,0 +1,44 @@
+artifact_path: swiggy_time_predictor
+flavors:
+  python_function:
+    artifacts:
+      model:
+        path: artifacts\model.pkl
+        uri: C:\Users\redhu\OneDrive\Desktop\mlflow_sagemaker_demo_project\model.pkl
+      preprocessor:
+        path: artifacts\preprocessor.pkl
+        uri: C:\Users\redhu\OneDrive\Desktop\mlflow_sagemaker_demo_project\preprocessor.pkl
+    cloudpickle_version: 3.1.1
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.11.5
+    streamable: false
+mlflow_version: 2.13.0
+model_size_bytes: 37063190
+model_uuid: 15eb6769be5643de909f324b9406855d
+run_id: 976dd764124242f586604e3b18ab04f7
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "person_age", "required": true}, {"type": "double",
+    "name": "person_ratings", "required": true}, {"type": "string", "name": "weather_condition",
+    "required": true}, {"type": "string", "name": "traffic_density", "required": true},
+    {"type": "long", "name": "vehicle_condition", "required": true}, {"type": "string",
+    "name": "order_type", "required": true}, {"type": "string", "name": "vehicle_type",
+    "required": true}, {"type": "double", "name": "multiple_deliveries", "required":
+    true}, {"type": "string", "name": "festival", "required": true}, {"type": "string",
+    "name": "city", "required": true}, {"type": "string", "name": "city_name", "required":
+    true}, {"type": "long", "name": "is_weekend", "required": true}, {"type": "double",
+    "name": "pickup_time_in_minutes", "required": true}, {"type": "string", "name":
+    "time_slot", "required": true}, {"type": "double", "name": "distance", "required":
+    true}, {"type": "string", "name": "distance_type", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    1]}}]'
+  params: null
+utc_time_created: '2025-07-03 07:26:16.025558'

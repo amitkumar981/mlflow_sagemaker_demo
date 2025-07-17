@@ -1,0 +1,53 @@
+stages:
+  data_cleaning:
+    cmd: python src/data_cleaning/data_cleaning.py
+    deps:
+      - src/data_cleaning/data_cleaning.py
+      - data/raw/swiggy.csv
+    outs:
+      - data/cleaned/swiggy_cleaned.csv
+  data_processing:
+    cmd: python src/data_processing/data_processing.py
+    deps:
+      - src/data_processing/data_processing.py
+      - data/cleaned/swiggy_cleaned.csv
+    outs:
+      - data/interim/train_data.csv
+      - data/interim/test_data.csv
+  feature_engineering:
+    cmd: python src/feature_engineering/feature_engineering.py
+    deps:
+      - src/feature_engineering/feature_engineering.py
+      - data/interim/train_data.csv
+      - data/interim/test_data.csv
+    outs:
+      - data/processed/x_train_trans.pkl
+      - data/processed/y_train.pkl
+  model_building:
+    cmd: python src/model_building/model_training.py
+    deps:
+      - src/model_building/model_training.py
+      - data/processed/x_train_trans.pkl
+      - data/processed/y_train.pkl
+    outs:
+      - model.pkl
+  model_evaluation:
+    cmd: python src/model_evaluation/model_evaluation.py
+    deps:
+      - src/model_evaluation/model_evaluation.py
+      - data/raw/swiggy.csv
+      - model.pkl
+    outs:
+      - model_info.json
+  register_model:
+    cmd : python src/register_model/register_model.py
+
+
+
+    
+
+
+
+
+
+       

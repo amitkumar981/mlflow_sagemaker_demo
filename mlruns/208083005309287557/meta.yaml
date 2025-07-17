@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/redhu/OneDrive/Desktop/mlflow_sagemaker_demo_project/mlruns/208083005309287557
+creation_time: 1751523745186
+experiment_id: '208083005309287557'
+last_update_time: 1751523745186
+lifecycle_stage: active
+name: pipeline

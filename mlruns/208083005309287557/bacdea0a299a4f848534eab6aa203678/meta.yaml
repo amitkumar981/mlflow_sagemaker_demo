@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/redhu/OneDrive/Desktop/mlflow_sagemaker_demo_project/mlruns/208083005309287557/bacdea0a299a4f848534eab6aa203678/artifacts
+end_time: 1751529105140
+entry_point_name: ''
+experiment_id: '208083005309287557'
+lifecycle_stage: active
+run_id: bacdea0a299a4f848534eab6aa203678
+run_name: spiffy-yak-55
+run_uuid: bacdea0a299a4f848534eab6aa203678
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751529002934
+status: 4
+tags: []
+user_id: redhu
