@@ -1,0 +1,34 @@
+#setup python  image
+FROM python:3.11-slim
+
+#make directory
+WORKDIR /opt/ml
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y libgomp1 && apt-get clean
+
+#copy necessary files
+COPY docker_requirements.txt /opt/ml/docker_requirements.txt
+COPY src /opt/ml/src
+COPY model_info.json /opt/ml/model_info.json
+COPY app.py /opt/ml/app.py
+
+# Create and copy raw data file
+RUN mkdir -p data/raw
+COPY data/raw/swiggy_sample.csv /opt/ml/data/raw/swiggy_sample.csv
+
+#run dependencies
+RUN pip install pip --upgrade pip && pip install -r docker_requirements.txt
+
+#export port
+EXPOSE 8080
+
+#run app.py
+ENTRYPOINT ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port 8080"]
+
+
+
+
+
+
+
