@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/187755120132885830/efba655c748b4cfd82541c5041adf0da/artifacts
+end_time: 1752752688624
+entry_point_name: ''
+experiment_id: '187755120132885830'
+lifecycle_stage: active
+run_id: efba655c748b4cfd82541c5041adf0da
+run_name: receptive-deer-53
+run_uuid: efba655c748b4cfd82541c5041adf0da
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752752656607
+status: 3
+tags: []
+user_id: redhu

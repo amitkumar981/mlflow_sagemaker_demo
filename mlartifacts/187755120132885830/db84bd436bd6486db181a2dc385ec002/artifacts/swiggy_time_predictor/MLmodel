@@ -1,0 +1,33 @@
+artifact_path: swiggy_time_predictor
+flavors:
+  python_function:
+    cloudpickle_version: 3.1.1
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.11.5
+    streamable: false
+mlflow_version: 2.13.0
+model_size_bytes: 37038530
+model_uuid: a10ad8a8279f4127a41508b66e86d023
+run_id: db84bd436bd6486db181a2dc385ec002
+signature:
+  inputs: '[{"type": "double", "name": "person_age", "required": true}, {"type": "double",
+    "name": "person_ratings", "required": true}, {"type": "string", "name": "weather_condition",
+    "required": true}, {"type": "string", "name": "traffic_density", "required": true},
+    {"type": "long", "name": "vehicle_condition", "required": true}, {"type": "string",
+    "name": "order_type", "required": true}, {"type": "string", "name": "vehicle_type",
+    "required": true}, {"type": "double", "name": "multiple_deliveries", "required":
+    true}, {"type": "string", "name": "festival", "required": true}, {"type": "string",
+    "name": "city", "required": true}, {"type": "string", "name": "city_name", "required":
+    true}, {"type": "long", "name": "is_weekend", "required": true}, {"type": "double",
+    "name": "pickup_time_in_minutes", "required": true}, {"type": "string", "name":
+    "time_slot", "required": true}, {"type": "double", "name": "distance", "required":
+    true}, {"type": "string", "name": "distance_type", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    1]}}]'
+  params: null
+utc_time_created: '2025-07-17 11:21:51.583126'

@@ -31,5 +31,17 @@ pipeline {
                 }
             }
         }
+
+        stage("run pipline"){
+            steps{
+                script{
+                    echo 'run pipline.......'
+                    sh '''
+                    . venv/bin/activate
+                      dvc repro
+                    '''
+                }
+            }
+        }
     }
 }

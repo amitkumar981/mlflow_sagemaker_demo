@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1752751849993
+current_stage: None
+description: ''
+last_updated_timestamp: 1752751849993
+name: SwiggyTimePredictorModel
+run_id: f3f0c65908dd4ecca37dbe11f68f0746
+run_link: ''
+source: mlflow-artifacts:/187755120132885830/f3f0c65908dd4ecca37dbe11f68f0746/artifacts/swiggy_time_predictor
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/187755120132885830/f3f0c65908dd4ecca37dbe11f68f0746/artifacts/swiggy_time_predictor
+user_id: null
+version: 3

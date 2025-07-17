@@ -185,3 +185,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 /model_info.json
+/model.pkl

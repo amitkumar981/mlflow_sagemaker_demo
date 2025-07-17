@@ -1,0 +1,19 @@
+digest: 9fdb6076
+name: dataset
+profile: '{"num_rows": 20, "num_elements": 340}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "person_age", "required":
+  true}, {"type": "double", "name": "person_ratings", "required": true}, {"type":
+  "string", "name": "weather_condition", "required": true}, {"type": "string", "name":
+  "traffic_density", "required": true}, {"type": "long", "name": "vehicle_condition",
+  "required": true}, {"type": "string", "name": "order_type", "required": true}, {"type":
+  "string", "name": "vehicle_type", "required": true}, {"type": "double", "name":
+  "multiple_deliveries", "required": true}, {"type": "string", "name": "festival",
+  "required": true}, {"type": "string", "name": "city", "required": true}, {"type":
+  "long", "name": "time_taken", "required": true}, {"type": "string", "name": "city_name",
+  "required": true}, {"type": "long", "name": "is_weekend", "required": true}, {"type":
+  "double", "name": "pickup_time_in_minutes", "required": true}, {"type": "string",
+  "name": "time_slot", "required": true}, {"type": "double", "name": "distance", "required":
+  true}, {"type": "string", "name": "distance_type", "required": true}]}'
+source: '{"tags": {"mlflow.user": "redhu", "mlflow.source.name": "src/model_evaluation/model_evaluation.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "b4dcf53e27ee178bb8ccfda5dd1d6c499338d5f4"}}'
+source_type: code

@@ -8,8 +8,9 @@ import os
 from dotenv import load_dotenv
 
 
-load_dotenv()
+load_dotenv(override=True)
 mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
+
 
 #configure logging
 logger=logging.getLogger('data_evaluation')
