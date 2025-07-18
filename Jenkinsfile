@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.11-slim'
-            args '-u root'
-        }
-    }
+    agent any
 
     environment {
         VENV_PATH = "venv"
@@ -12,6 +7,18 @@ pipeline {
     }
 
     stages {
+        stage('Install Python and Dependencies') {
+            steps {
+                echo 'Installing Python3 and dependencies...'
+                sh '''
+                    apt-get update && apt-get install -y python3 python3-venv python3-pip git curl
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                '''
+            }
+        }
+
         stage('Clone GitHub Repo to Jenkins') {
             steps {
                 echo 'Cloning GitHub repo to Jenkins...'
@@ -26,14 +33,10 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install Project Dependencies') {
             steps {
-                echo 'Setting up virtual environment and installing dependencies...'
                 sh '''
-                    apt-get update && apt-get install -y git curl build-essential
-                    python3 -m venv venv
                     . venv/bin/activate
-                    pip install --upgrade pip
                     pip install -r requirements.txt
                 '''
             }
@@ -75,35 +78,19 @@ pipeline {
 
         stage('Run Model Loading Test') {
             steps {
-                withCredentials([
-                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
-                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
-                ]) {
-                    echo 'Running model loading test...'
-                    sh '''
-                        . venv/bin/activate
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-                        pytest tests/test_model_loading.py
-                    '''
-                }
+                sh '''
+                    . venv/bin/activate
+                    pytest tests/test_model_loading.py
+                '''
             }
         }
 
         stage('Run Model Performance Test') {
             steps {
-                withCredentials([
-                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
-                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
-                ]) {
-                    echo 'Running model performance test...'
-                    sh '''
-                        . venv/bin/activate
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-                        pytest tests/test_model_perf.py
-                    '''
-                }
+                sh '''
+                    . venv/bin/activate
+                    pytest tests/test_model_perf.py
+                '''
             }
         }
     }
