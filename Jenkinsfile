@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         VENV_PATH = "venv"
+        MLFLOW_TRACKING_URI='http://ec2-13-233-192-43.ap-south-1.compute.amazonaws.com:5000/'
     }
 
     stages {
