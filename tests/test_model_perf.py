@@ -28,10 +28,13 @@ file_path = root_path/'model_info.json'
 run_info = model_load_information(file_path)
 
 model_name = run_info['model_name']
-stage = 'Staging'
+
+client=MlflowClient()
+latest_versions = client.get_latest_versions(name=model_name)
+latest_version=latest_versions[0].version
 
 # Load model
-model_path = f"models:/{model_name}/{stage}"
+model_path = f"models:/{model_name}/{latest_version}"
 model = mlflow.pyfunc.load_model(model_path)
 
 data_path=os.path.join(root_path,'data','interim','test_data.csv')
