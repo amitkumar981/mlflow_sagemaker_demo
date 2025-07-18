@@ -141,9 +141,9 @@ def main():
     ensure_directory_exists(processed_data_dir)
 
     # Save transformed features and target
-    with open(os.path.join(processed_data_dir, 'x_train_trans.pkl'), 'wb') as f:
+    with open(os.path.join(processed_data_dir, 'x_train_trans.csv'), 'wb') as f:
         pickle.dump(x_train_trans, f)
-    with open(os.path.join(processed_data_dir, 'y_train.pkl'), 'wb') as f:
+    with open(os.path.join(processed_data_dir, 'y_train.csv'), 'wb') as f:
         pickle.dump(y_train, f)
     with open(os.path.join(root_dir, 'preprocessor.pkl'), 'wb') as f:
         pickle.dump(preprocessor, f)

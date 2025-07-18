@@ -109,8 +109,8 @@ def main():
     lgbm_params=params['model_building']['lgbm_params']
 
     
-    x_train_path = root_dir / "data" / "processed" / "x_train_trans.pkl"
-    y_train_path = root_dir / "data" / "processed" / "y_train.pkl"
+    x_train_path = root_dir / "data" / "processed" / "x_train_trans.csv"
+    y_train_path = root_dir / "data" / "processed" / "y_train.csv"
 
     x_train = load_data(x_train_path)
     y_train = load_data(y_train_path)

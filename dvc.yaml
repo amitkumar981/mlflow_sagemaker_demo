@@ -21,14 +21,14 @@ stages:
       - data/interim/train_data.csv
       - data/interim/test_data.csv
     outs:
-      - data/processed/x_train_trans.pkl
-      - data/processed/y_train.pkl
+      - data/processed/x_train_trans.csv
+      - data/processed/y_train.csv
   model_building:
     cmd: python src/model_building/model_training.py
     deps:
       - src/model_building/model_training.py
-      - data/processed/x_train_trans.pkl
-      - data/processed/y_train.pkl
+      - data/processed/x_train_trans.csv
+      - data/processed/y_train.csv
     outs:
       - model.pkl
   model_evaluation:
@@ -37,6 +37,8 @@ stages:
       - src/model_evaluation/model_evaluation.py
       - data/raw/swiggy.csv
       - model.pkl
+    outs:
+      - model_info.json
   register_model:
     cmd : python src/register_model/register_model.py
 

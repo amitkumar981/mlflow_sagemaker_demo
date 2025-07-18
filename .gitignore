@@ -186,3 +186,4 @@ cython_debug/
 .pypircS
 /model.pkl
 start_mlflow.py
+/model_info.json
