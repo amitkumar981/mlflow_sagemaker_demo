@@ -15,7 +15,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# C extensionsz
 *.so
 
 # Distribution / packaging
@@ -183,6 +183,5 @@ cython_debug/
 .ruff_cache/
 
 # PyPI configuration file
-.pypirc
-/model_info.json
+.pypircS
 /model.pkl
