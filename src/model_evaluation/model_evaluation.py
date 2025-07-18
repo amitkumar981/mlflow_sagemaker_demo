@@ -121,19 +121,27 @@ def main():
         artifact_path="swiggy_time_predictor",  
         python_model=CustomModel(model,preprocessor),                      
         registered_model_name="SwiggyTimePredictorModel",
-        signature=signature 
+        signature=signature
         )
 
         logger.info("Model logged to MLflow.")
 
+        model_name="swiggy_time_predictor"
+        run_id=run.info.run_id
+
         # Save model info
         save_model_info(
             path=root_dir / "model_info.json",
-            model_name="swiggy_time_predictor",
-            run_id=run.info.run_id,
+            model_name=model_name,
+            run_id=run_id,
             artifact_path=mlflow.get_artifact_uri()
         )
         logger.info("Model_info logged to MLflow.")
+
+        model_uri=f"runs:/{run_id}/{model_name}"
+
+        mlflow.register_model(name=model_name,model_uri=model_uri)
+        logger.info("register model successfully")
 
 if __name__ == "__main__":
     main()
