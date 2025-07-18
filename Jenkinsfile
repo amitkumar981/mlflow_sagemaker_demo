@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11-slim'
+            args '-u root'
+        }
+    }
 
     environment {
         VENV_PATH = "venv"
@@ -25,10 +30,11 @@ pipeline {
             steps {
                 echo 'Setting up virtual environment and installing dependencies...'
                 sh '''
+                    apt-get update && apt-get install -y git curl build-essential
                     python3 -m venv venv
-                    . venv/bin/activate && \
-                    pip install --upgrade pip && \
-                    pip install --retries=5 --timeout=60 -r requirements.txt
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
                 '''
             }
         }
@@ -41,9 +47,9 @@ pipeline {
                 ]) {
                     echo 'Pulling data from DVC remote (S3)...'
                     sh '''
-                        . venv/bin/activate && \
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID && \
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY && \
+                        . venv/bin/activate
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                         dvc pull
                     '''
                 }
@@ -58,9 +64,9 @@ pipeline {
                 ]) {
                     echo 'Reproducing DVC pipeline...'
                     sh '''
-                        . venv/bin/activate && \
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID && \
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY && \
+                        . venv/bin/activate
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                         dvc repro
                     '''
                 }
@@ -75,9 +81,9 @@ pipeline {
                 ]) {
                     echo 'Running model loading test...'
                     sh '''
-                        . venv/bin/activate && \
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID && \
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY && \
+                        . venv/bin/activate
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                         pytest tests/test_model_loading.py
                     '''
                 }
@@ -92,9 +98,9 @@ pipeline {
                 ]) {
                     echo 'Running model performance test...'
                     sh '''
-                        . venv/bin/activate && \
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID && \
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY && \
+                        . venv/bin/activate
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                         pytest tests/test_model_perf.py
                     '''
                 }
