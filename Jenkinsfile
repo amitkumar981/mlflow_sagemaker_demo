@@ -50,6 +50,16 @@ pipeline {
             }
         }
 
+        stage('DVC Reproduce Pipeline') {
+            steps {
+                echo 'Reproducing DVC pipeline...'
+                sh '''
+                    . venv/bin/activate && \
+                    dvc repro
+                '''
+            }
+        }
+
         stage('Run Model Loading Test') {
             steps {
                 withCredentials([
