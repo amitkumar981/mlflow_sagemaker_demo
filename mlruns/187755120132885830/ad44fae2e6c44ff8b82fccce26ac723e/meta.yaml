@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/187755120132885830/ad44fae2e6c44ff8b82fccce26ac723e/artifacts
+end_time: 1752807336529
+entry_point_name: ''
+experiment_id: '187755120132885830'
+lifecycle_stage: active
+run_id: ad44fae2e6c44ff8b82fccce26ac723e
+run_name: thoughtful-bass-789
+run_uuid: ad44fae2e6c44ff8b82fccce26ac723e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752807292865
+status: 3
+tags: []
+user_id: redhu

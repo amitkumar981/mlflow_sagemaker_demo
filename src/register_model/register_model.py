@@ -1,5 +1,4 @@
 import logging
-import dagshub
 import mlflow
 import json
 from pathlib import Path
@@ -69,11 +68,10 @@ def main():
 
     client=MlflowClient()
     #transistion model_stage
-    client.set_model_version_tag(
+    client.transition_model_version_stage(
     name=registered_model_name,
     version=registered_model_version,
-    key="stage",
-    value="staging"
+    stage='Staging'
     )
     logger.info(f"registered model successfully")
 

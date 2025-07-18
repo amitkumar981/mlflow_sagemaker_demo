@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        VENV_PATH = "venv"
+    }
+
     stages {
         stage('Clone GitHub Repo to Jenkins') {
             steps {
@@ -24,9 +28,33 @@ pipeline {
                     echo 'Setting up virtual environment and installing dependencies...'
                     sh '''
                         python3 -m venv venv
-                        . venv/bin/activate
-                        pip install --upgrade pip
-                        pip install --retries=5 --timeout=60 --progress-bar=off -r requirements.txt
+                        . venv/bin/activate && \
+                        pip install --upgrade pip && \
+                        pip install --retries=5 --timeout=60 -r requirements.txt
+                    '''
+                }
+            }
+        }
+
+        stage('Run Model Loading Test') {
+            steps {
+                script {
+                    echo 'Running model loading test...'
+                    sh '''
+                        . venv/bin/activate && \
+                        python tests/run_model_loading.py
+                    '''
+                }
+            }
+        }
+
+        stage('Run Model Performance Test') {
+            steps {
+                script {
+                    echo 'Running model performance test...'
+                    sh '''
+                        . venv/bin/activate && \
+                        python tests/test_model_perf.py
                     '''
                 }
             }
