@@ -42,7 +42,7 @@ pipeline {
                     echo 'Running model loading test...'
                     sh '''
                         . venv/bin/activate && \
-                        pytest tests/run_model_loading.py
+                        pytest tests/test_model_loading.py
                     '''
                 }
             }
