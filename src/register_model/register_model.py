@@ -12,7 +12,7 @@ mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
 
 
 #configure logging
-logger=logging.getLogger('data_evaluation')
+logger=logging.getLogger('register model')
 logger.setLevel(logging.DEBUG)
 
 #configure file handler
