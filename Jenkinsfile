@@ -12,8 +12,8 @@ pipeline {
                 echo 'Installing Python3 and dependencies...'
                 sh '''
                     apt-get update && apt-get install -y python3 python3-venv python3-pip git curl
-                    python3 -m venv venv
-                    . venv/bin/activate
+                    python3 -m venv ${VENV_PATH}
+                    . ${VENV_PATH}/bin/activate
                     pip install --upgrade pip
                 '''
             }
@@ -36,7 +36,7 @@ pipeline {
         stage('Install Project Dependencies') {
             steps {
                 sh '''
-                    . venv/bin/activate
+                    . ${VENV_PATH}/bin/activate
                     pip install -r requirements.txt
                 '''
             }
@@ -50,9 +50,7 @@ pipeline {
                 ]) {
                     echo 'Pulling data from DVC remote (S3)...'
                     sh '''
-                        . venv/bin/activate
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                        . ${VENV_PATH}/bin/activate
                         dvc pull
                     '''
                 }
@@ -67,9 +65,7 @@ pipeline {
                 ]) {
                     echo 'Reproducing DVC pipeline...'
                     sh '''
-                        . venv/bin/activate
-                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                        . ${VENV_PATH}/bin/activate
                         dvc repro
                     '''
                 }
@@ -78,20 +74,31 @@ pipeline {
 
         stage('Run Model Loading Test') {
             steps {
-                sh '''
-                    . venv/bin/activate
-                    pytest tests/test_model_loading.py
-                '''
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh '''
+                        . ${VENV_PATH}/bin/activate
+                        pytest tests/test_model_loading.py
+                    '''
+                }
             }
         }
 
         stage('Run Model Performance Test') {
             steps {
-                sh '''
-                    . venv/bin/activate
-                    pytest tests/test_model_perf.py
-                '''
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh '''
+                        . ${VENV_PATH}/bin/activate
+                        pytest tests/test_model_perf.py
+                    '''
+                }
             }
         }
     }
 }
+
