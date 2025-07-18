@@ -1,5 +1,7 @@
 # Data
 /data/
+# Allow DVC tracking metadata files
+!data/**/*.dvc
 
 # Mac OS-specific storage files
 .DS_Store
