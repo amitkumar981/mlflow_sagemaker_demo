@@ -1,5 +1,0 @@
-{
-    "model_name": "swiggy_time_predictor",
-    "run_id": "f5d21eb744b943e49b1cd552077fb195",
-    "artifact_path": "s3://mlfow-sagemaker-demo-bucket/940764825404170056/f5d21eb744b943e49b1cd552077fb195/artifacts"
-}
