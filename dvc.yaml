@@ -39,8 +39,7 @@ stages:
       - model.pkl
     outs:
       - model_info.json
-  register_model:
-    cmd : python src/register_model/register_model.py
+
 
 
 
