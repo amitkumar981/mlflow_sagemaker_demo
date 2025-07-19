@@ -68,11 +68,16 @@ pipeline {
                 ]) {
                     sh '''
                         ${VENV_PATH}/bin/dvc push
+
                         git config --global user.email "jenkins@yourdomain.com"
                         git config --global user.name "Jenkins"
+
+                        # Switch to master branch to avoid detached HEAD
+                        git checkout master
+
                         git add .
                         git diff-index --quiet HEAD || git commit -m "Update after DVC repro [automated]"
-                        git push origin $(git symbolic-ref --short HEAD)
+                        git push origin master
                     '''
                 }
             }
