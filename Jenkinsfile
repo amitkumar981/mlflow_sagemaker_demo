@@ -125,5 +125,18 @@ pipeline {
                 '''
             }
         }
+        stage("deploy the image on sagemaker"){
+            steps {
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                   sh '''
+                    ${VENV_PATH}/bin/python deploy.py
+                    '''
+                }
+
+            }
+        }
     }
 }
