@@ -1,0 +1,5 @@
+{
+    "model_name": "swiggy_time_predictor",
+    "run_id": "5280d2c7b8f84cdfb732b1ff199812c3",
+    "artifact_path": "Path: s3://mlfow-sagemaker-demo-bucket/940764825404170056/5280d2c7b8f84cdfb732b1ff199812c3/artifacts"
+}
