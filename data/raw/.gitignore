@@ -1,0 +1,8 @@
+/swiggy.csv
+/swiggy_sample.csv
+/swiggy.csv
+data/cleaned/
+data/external/
+data/interim/
+data/processed/
+monitoring/production_data.csv

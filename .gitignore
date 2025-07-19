@@ -190,3 +190,8 @@ cython_debug/
 /model.pkl
 start_mlflow.py
 /model_info.json
+data/cleaned/
+data/external/
+data/interim/
+data/processed/
+monitoring/production_data.csv
