@@ -65,7 +65,7 @@ pipeline {
                 withCredentials([
                     string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
                     string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY'),
-                    string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')
+                    string(credentialsId: 'github_token', variable: 'GITHUB_TOKEN')
                 ]) {
                     sh '''
                         ${VENV_PATH}/bin/dvc push
