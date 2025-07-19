@@ -73,8 +73,6 @@ pipeline {
                         git config --global user.email "jenkins@yourdomain.com"
                         git config --global user.name "Jenkins"
 
-                        git checkout master
-
                         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/amitkumar981/mlflow_sagemaker_demo.git
 
                         git add .
