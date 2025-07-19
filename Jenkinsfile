@@ -78,7 +78,7 @@ pipeline {
                         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/amitkumar981/mlflow_sagemaker_demo.git
 
                         git add .
-                        git diff-index --quiet HEAD || git commit -m "Update after DVC repro [automated]"
+                        git commit -m "Update after DVC repro [automated]"
                         git push origin master
                     '''
                 }
