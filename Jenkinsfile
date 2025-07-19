@@ -29,8 +29,6 @@ pipeline {
             steps {
                 sh '''
                     ${VENV_PATH}/bin/pip install --upgrade pip --no-cache-dir && ${VENV_PATH}/bin/pip install --no-cache-dir -r requirements.txt
-
-
                 '''
             }
         }
@@ -63,6 +61,24 @@ pipeline {
             }
         }
 
+        stage('DVC Push and Git Commit') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh '''
+                        ${VENV_PATH}/bin/dvc push
+                        git config --global user.email "jenkins@yourdomain.com"
+                        git config --global user.name "Jenkins"
+                        git add .
+                        git commit -m "Update after DVC repro [automated]"
+                        git push origin master
+                    '''
+                }
+            }
+        }
+
         stage('Run Model Loading Test') {
             steps {
                 withCredentials([
@@ -88,7 +104,6 @@ pipeline {
                 }
             }
         }
-        
 
         stage('Login to ECR') {
             steps {
@@ -126,17 +141,17 @@ pipeline {
                 '''
             }
         }
-        stage("deploy the image on sagemaker"){
+
+        stage("Deploy the image on SageMaker") {
             steps {
                 withCredentials([
                     string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
                     string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
-                   sh '''
-                    ${VENV_PATH}/bin/python deploy.py
+                    sh '''
+                        ${VENV_PATH}/bin/python deploy.py
                     '''
                 }
-
             }
         }
     }
