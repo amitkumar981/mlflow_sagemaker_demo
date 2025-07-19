@@ -31,7 +31,7 @@ services:
     image: jenkins/jenkins:lts
     container_name: jenkins
     ports:
-      - "8080:8080"    
+      - "8080:8080"  
     volumes:
       - jenkins_home:/var/jenkins_home
     networks:
@@ -46,5 +46,3 @@ volumes:
 networks:
   monitoring:
     driver: bridge
-
-

@@ -12,6 +12,7 @@ import sys
 import mlflow
 from mlflow import pyfunc
 from dotenv import load_dotenv
+from monitoring.prod_logger import log_prediction_input
 
 
 # Set up module paths
@@ -84,6 +85,7 @@ def invoke(data: Data):
     pred_data = pd.DataFrame([data.dict()])
     cleaned_data = perform_data_cleaning(pred_data).dropna()
     prediction = model.predict(cleaned_data)[0]
+    log_prediction_input(pred_data,prediction)
     return {"prediction": float(prediction)}
 
 # Optional custom route (can be used locally)

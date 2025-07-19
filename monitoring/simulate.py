@@ -11,7 +11,7 @@ from pathlib import Path
 current_dir=Path(__file__).resolve()
 root_dir=current_dir.parent.parent
 # Configuration
-URL = "http://localhost:5000/invocations"
+URL = "http://localhost:8080/invocations"
  
 sample_data_path = root_dir/'data'/'raw'/'swiggy.csv'  
 
