@@ -68,15 +68,31 @@ pipeline {
                     string(credentialsId: 'github_token', variable: 'GITHUB_TOKEN')
                 ]) {
                     sh '''
+                        echo "Pushing DVC data to remote..."
                         ${VENV_PATH}/bin/dvc push
 
+                        echo "Configuring Git..."
                         git config --global user.email "jenkins@yourdomain.com"
                         git config --global user.name "Jenkins"
-
                         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/amitkumar981/mlflow_sagemaker_demo.git
 
+                        CURRENT_BRANCH=$(git symbolic-ref --short HEAD || echo "detached")
+
+                        if [ "$CURRENT_BRANCH" != "master" ]; then
+                            echo "Switching to master branch..."
+                            git add .
+                            git diff-index --quiet HEAD || git commit -m "Temp commit before switching to master"
+                            git checkout master
+                        fi
+
+                        echo "Pulling latest changes from origin/master..."
+                        git pull origin master --rebase
+
+                        echo "Committing new changes (if any)..."
                         git add .
-                        git commit -m "Update after DVC repro [automated]"
+                        git diff-index --quiet HEAD || git commit -m "Update after DVC repro [automated]"
+
+                        echo "Pushing to GitHub..."
                         git push origin master
                     '''
                 }
