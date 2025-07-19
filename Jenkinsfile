@@ -28,7 +28,8 @@ pipeline {
         stage('Install Project Dependencies') {
             steps {
                 sh '''
-                    ${VENV_PATH}/bin/pip install -r requirements.txt
+                    ${VENV_PATH}/bin/pip install --upgrade pip && ${VENV_PATH}/bin/pip install -r requirements.txt
+
                 '''
             }
         }
