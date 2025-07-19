@@ -54,7 +54,9 @@ pipeline {
                     string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
                     sh '''
-                        dvc repro
+                        python -m venv ${VENV_PATH}
+                        . ${VENV_PATH}/bin/activate
+                        ${VENV_PATH}/bin/dvc repro
                     '''
                 }
             }
