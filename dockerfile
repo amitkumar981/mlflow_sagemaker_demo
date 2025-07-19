@@ -20,6 +20,7 @@ COPY model_info.json /opt/ml/code/model_info.json
 COPY data/raw/swiggy_sample.csv /opt/ml/code/data/raw/swiggy_sample.csv
 COPY serve.py /opt/ml/code/serve.py
 COPY .env /opt/ml/code/.env
+COPY monitoring/prod_logger.py /opt/ml/code/monitoring/prod_logger.py
 
 # Switch to code dir (SageMaker uses this during inference)
 WORKDIR /opt/ml/code
