@@ -64,7 +64,8 @@ pipeline {
             steps {
                 withCredentials([
                     string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
-                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY'),
+                    string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')
                 ]) {
                     sh '''
                         ${VENV_PATH}/bin/dvc push
@@ -72,8 +73,9 @@ pipeline {
                         git config --global user.email "jenkins@yourdomain.com"
                         git config --global user.name "Jenkins"
 
-                        # Switch to master branch to avoid detached HEAD
                         git checkout master
+
+                        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/amitkumar981/mlflow_sagemaker_demo.git
 
                         git add .
                         git diff-index --quiet HEAD || git commit -m "Update after DVC repro [automated]"
