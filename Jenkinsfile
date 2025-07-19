@@ -54,8 +54,7 @@ pipeline {
                     string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
                     sh '''
-                        ${VENV_PATH}/bin/python -c "import numpy; import pandas; print('✅ numpy & pandas available')"
-                        ${VENV_PATH}/bin/dvc repro
+                        dvc repro
                     '''
                 }
             }
