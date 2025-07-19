@@ -28,7 +28,7 @@ pipeline {
         stage('Install Project Dependencies') {
             steps {
                 sh '''
-                    ${VENV_PATH}/bin/pip install --upgrade pip --no-cache-dir && ${VENV_PATH}/bin/pip install --no-cache-dir -r requirements.txt
+                    ${VENV_PATH}/bin/pip install -r requirements.txt
                 '''
             }
         }
@@ -53,7 +53,6 @@ pipeline {
                     string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
                     sh '''
-                        python -m venv ${VENV_PATH}
                         . ${VENV_PATH}/bin/activate
                         ${VENV_PATH}/bin/dvc repro
                     '''
@@ -72,8 +71,8 @@ pipeline {
                         git config --global user.email "jenkins@yourdomain.com"
                         git config --global user.name "Jenkins"
                         git add .
-                        git commit -m "Update after DVC repro [automated]"
-                        git push origin master
+                        git diff-index --quiet HEAD || git commit -m "Update after DVC repro [automated]"
+                        git push origin $(git symbolic-ref --short HEAD)
                     '''
                 }
             }
